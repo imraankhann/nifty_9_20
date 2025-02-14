@@ -130,22 +130,22 @@ if intTime >= 9 and intTime < 12:
 
         
     
-        if nifty_ce_risky_minus_range <= niftyLastPrice <= nifty_ce_risky_plus_range and niftyLastPrice < nse_ce_risky_levels:
+        if nifty_ce_risky_minus_range <= niftyLastPrice <= nifty_ce_risky_plus_range :
             buy = 'RISKY PE'
             t_url = f"https://api.telegram.org/{my_token}/sendMessage?chat_id={chat_id}&text="+"======================\n"+dt[0]+"-"+runTime+"\n======================\n"+"PYTHON-BOT FOR TODAY's NIFTY 4 Magical LEVELS\n"+"======================\n"+"NIFYT CMP : "+str(niftyLastPrice)+"\n======================\n"+"NIFTY TRADING NEAR RISKY CE BO LEVEL: "+str(nifty_ce_risky_plus_range)+"\n"+"=========================\n"+"CHOOSE STRIKE : "+str(nearest_strike_nf)+" "+buy+"\n=========================\n"+"NOTE : ONLY FOR EDUCATIONAL PURPOSE.\n"+"---------------------------------\n"+"I AM NOT SEBI REG..!"+"\n----------------------------------"+"\nTRADE AT YOUR OWN RISK..!"
             requests.post(t_url)
 
-        if nifty_ce_safe_minus_range <= niftyLastPrice <= nifty_ce_safe_plus_range and niftyLastPrice < nse_ce_safe_levels:
+        if nifty_ce_safe_minus_range <= niftyLastPrice <= nifty_ce_safe_plus_range and :
             buy = "SAFE PE"
             t_url = f"https://api.telegram.org/{my_token}/sendMessage?chat_id={chat_id}&text="+"======================\n"+dt[0]+"-"+runTime+"\n======================\n"+"PYTHON-BOT FOR TODAY's NIFTY 4 Magical LEVELS\n"+"======================\n"+"NIFYT CMP : "+str(niftyLastPrice)+"\n======================\n"+"NIFTY TRADING NEAR SAFE CE BO LEVEL: "+str(nifty_ce_safe_minus_range)+"\n"+"=========================\n"+"CHOOSE STRIKE : "+str(nearest_strike_nf)+" "+buy+"\n=========================\n"+"NOTE : ONLY FOR EDUCATIONAL PURPOSE.\n"+"-----------------------------------\n"+"I AM NOT SEBI REG..!"+"\n---------------------------------"+"\nTRADE AT YOUR OWN RISK..!"
             requests.post(t_url)
 
-        if nifty_pe_risky_minus_range <= niftyLastPrice <= nifty_pe_risky_plus_range and niftyLastPrice > nse_pe_risky_levels:
+        if nifty_pe_risky_minus_range <= niftyLastPrice <= nifty_pe_risky_plus_range :
             buy = "RISKY CE"
             t_url = f"https://api.telegram.org/{my_token}/sendMessage?chat_id={chat_id}&text="+"======================\n"+dt[0]+"-"+runTime+"\n======================\n"+"PYTHON-BOT FOR TODAY's NIFTY 4 Magical LEVELS\n"+"======================\n"+"NIFYT CMP : "+str(niftyLastPrice)+"\n======================\n"+"NIFTY TRADING NEAR RISKY PE BO LEVEL: "+str(nifty_pe_risky_minus_range)+"\n"+"=========================\n"+"CHOOSE STRIKE : "+str(nearest_strike_nf)+" "+buy+"\n=========================\n"+"NOTE : ONLY FOR EDUCATIONAL PURPOSE.\n"+"-----------------------------------\n"+"I AM NOT SEBI REG..!"+"\n---------------------------------"+"\nTRADE AT YOUR OWN RISK..!"
             requests.post(t_url)     
 
-        if nifty_pe_safe_minus_range <= niftyLastPrice <= nifty_pe_safe_plus_range and niftyLastPrice > nse_pe_safe_levels:
+        if nifty_pe_safe_minus_range <= niftyLastPrice <= nifty_pe_safe_plus_range and :
             buy = "SAFE CE"
             t_url = f"https://api.telegram.org/{my_token}/sendMessage?chat_id={chat_id}&text="+"======================\n"+dt[0]+"-"+runTime+"\n======================\n"+"PYTHON-BOT FOR TODAY's NIFTY LEVELS\n"+"======================\n"+"NIFYT CMP : "+str(niftyLastPrice)+"\n======================\n"+"NIFTY TRADING NEAR SAFE PE BO LEVEL: "+str(nifty_pe_safe_minus_range)+"\n"+"=========================\n"+"CHOOSE STRIKE : "+str(nearest_strike_nf)+" "+buy+"\n=========================\n"+"NOTE : ONLY FOR EDUCATIONAL PURPOSE.\n"+"-----------------------------------\n"+"I AM NOT SEBI REG..!"+"\n---------------------------------"+"\nTRADE AT YOUR OWN RISK..!"
             requests.post(t_url)        
