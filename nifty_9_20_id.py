@@ -39,8 +39,8 @@ logFileName = dateWithOutTime+"-"+"MagicLevel.log"
 #nse_ch_token = '5771720913:AAH0A70f0BPtPjrOCTrhAb9LR7IGFBVt-oM'
 #channel_id = '@swingTradeScreenedStocks'
 #nse_ch_id = '-703180529'
-my_token = 'bot6377307246:AAEuJAlBiQgDQEa03yNmKQJmZbXyQ0WINOk'
-chat_id = '-996001230'
+my_token = 'bot5771720913:AAH0A70f0BPtPjrOCTrhAb9LR7IGFBVt-oM'
+chat_id = '-703180529'
 
 #Fetch Updated Index values from csv file
 nsedf_risky_ce = pd.read_csv('./four_magical_lines.csv',usecols=['CE_Risky_Range'],nrows=1)
