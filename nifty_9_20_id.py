@@ -33,7 +33,6 @@ intTime = int(reqTime[0:2])
 intMin = int(reqMin)
 print("Int min : ", intMin)
 counter = 0
-logFileName = dateWithOutTime+"-"+"MagicLevel.log"
 
 #b_token = '5817461626:AAHp1IIIMkQGWFTqIuu84lYOoxlO8KS7CZo'
 #nse_ch_token = '5771720913:AAH0A70f0BPtPjrOCTrhAb9LR7IGFBVt-oM'
@@ -130,23 +129,27 @@ if intTime >= 9 and intTime < 12:
 
         if nifty_ce_risky_minus_range <= niftyLastPrice <= nifty_ce_risky_plus_range :
             buy = 'RISKY PE'
+            print("f Notified at time : {runTime} at strike price {niftyLastPrice} with Buy Condn {buy}")
             t_url = f"https://api.telegram.org/{my_token}/sendMessage?chat_id={chat_id}&text="+"======================\n"+dt[0]+"-"+runTime+"\n======================\n"+"PYTHON-BOT FOR TODAY's NIFTY 4 Magical LEVELS\n"+"======================\n"+"NIFYT CMP : "+str(niftyLastPrice)+"\n======================\n"+"NIFTY TRADING NEAR RISKY PE BO LEVEL: "+str(nifty_ce_risky_plus_range)+"\n"+"=========================\n"+"CHOOSE STRIKE : "+str(nearest_strike_nf)+" "+buy+"\n=========================\n"+"NOTE : ONLY FOR EDUCATIONAL PURPOSE.\n"+"---------------------------------\n"+"I AM NOT SEBI REG..!"+"\n----------------------------------"+"\nTRADE AT YOUR OWN RISK..!"
             requests.post(t_url)
 
         if nifty_ce_safe_minus_range <= niftyLastPrice <= nifty_ce_safe_plus_range :
             buy = "SAFE PE"
+            print("f Notified at time : {runTime} at strike price {niftyLastPrice} with Buy Condn {buy}")
             t_url = f"https://api.telegram.org/{my_token}/sendMessage?chat_id={chat_id}&text="+"======================\n"+dt[0]+"-"+runTime+"\n======================\n"+"PYTHON-BOT FOR TODAY's NIFTY 4 Magical LEVELS\n"+"======================\n"+"NIFYT CMP : "+str(niftyLastPrice)+"\n======================\n"+"NIFTY TRADING NEAR SAFE PE BO LEVEL: "+str(nifty_ce_safe_minus_range)+"\n"+"=========================\n"+"CHOOSE STRIKE : "+str(nearest_strike_nf)+" "+buy+"\n=========================\n"+"NOTE : ONLY FOR EDUCATIONAL PURPOSE.\n"+"-----------------------------------\n"+"I AM NOT SEBI REG..!"+"\n---------------------------------"+"\nTRADE AT YOUR OWN RISK..!"
             requests.post(t_url)
 
         if nifty_pe_risky_minus_range <= niftyLastPrice <= nifty_pe_risky_plus_range:
             buy = "RISKY CE"
+            print("f Notified at time : {runTime} at strike price {niftyLastPrice} with Buy Condn {buy}")
             t_url = f"https://api.telegram.org/{my_token}/sendMessage?chat_id={chat_id}&text="+"======================\n"+dt[0]+"-"+runTime+"\n======================\n"+"PYTHON-BOT FOR TODAY's NIFTY 4 Magical LEVELS\n"+"======================\n"+"NIFYT CMP : "+str(niftyLastPrice)+"\n======================\n"+"NIFTY TRADING NEAR RISKY CE BO LEVEL: "+str(nifty_pe_risky_minus_range)+"\n"+"=========================\n"+"CHOOSE STRIKE : "+str(nearest_strike_nf)+" "+buy+"\n=========================\n"+"NOTE : ONLY FOR EDUCATIONAL PURPOSE.\n"+"-----------------------------------\n"+"I AM NOT SEBI REG..!"+"\n---------------------------------"+"\nTRADE AT YOUR OWN RISK..!"
             requests.post(t_url)     
 
         if nifty_pe_safe_minus_range <= niftyLastPrice <= nifty_pe_safe_plus_range :
             buy = "SAFE CE"
+            print("f Notified at time : {runTime} at strike price {niftyLastPrice} with Buy Condn {buy}")
             t_url = f"https://api.telegram.org/{my_token}/sendMessage?chat_id={chat_id}&text="+"======================\n"+dt[0]+"-"+runTime+"\n======================\n"+"PYTHON-BOT FOR TODAY's NIFTY LEVELS\n"+"======================\n"+"NIFYT CMP : "+str(niftyLastPrice)+"\n======================\n"+"NIFTY TRADING NEAR SAFE CE BO LEVEL: "+str(nifty_pe_safe_minus_range)+"\n"+"=========================\n"+"CHOOSE STRIKE : "+str(nearest_strike_nf)+" "+buy+"\n=========================\n"+"NOTE : ONLY FOR EDUCATIONAL PURPOSE.\n"+"-----------------------------------\n"+"I AM NOT SEBI REG..!"+"\n---------------------------------"+"\nTRADE AT YOUR OWN RISK..!"
             requests.post(t_url)        
 
-
+        
         time.sleep(180)
