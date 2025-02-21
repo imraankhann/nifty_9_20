@@ -58,25 +58,7 @@ if intTime==9 and intMin in range(19,30):
     t_url = f"https://api.telegram.org/{my_token}/sendMessage?chat_id={chat_id}&text="+"======================\n"+nowTime+"\n======================"+"\nWELCOME TO AI BOT TRADING"+"\n======================"+"\nBOT STARTED SUCCESSFULLY..!"+"\n======================\n"+"TODAY's FOUR MAGICAL LINES\n"+"======================\n"+"NIFTY CE RISKY LEVEL: "+str(nse_ce_risky_levels)+"\n"+"-------------------------------------\n"+"NIFTY CE SAFE LEVEL: "+str(nse_ce_safe_levels)+"\n"+"=========================\n"+"NIFTY PE RISKY LEVEL: "+str(nse_pe_risky_levels)+"\n--------------------------------------\n"+"NIFTY PE SAFE LEVEL: "+str(nse_pe_safe_levels)+"\n"+"=========================\n"+"TRADE AT YOUR OWN RISK..!"+"\n---------------------------------\n"+"WISH YOU PROFITABLE DAY..!"
     requests.post(t_url)
 else: 
-    print("Not yet 9AM to run the program...!")
-
-data = yf.download("^NSEI", period="1mo", interval="5m")
-
-def get_live_price(data):
-    """Fetch the current live price of an index from the last row of data."""
-    return float(data['Close'].iloc[-1])
-
-live_price = round(get_live_price(data),2)
-
-print("live nifty price : ", live_price)
-
-def get_nearest_strike_price(live_price, step):
-    """Calculate the nearest strike price for a given index price."""
-    return round(live_price / step) * step
-
-nearest_strike_nf = get_nearest_strike_price(live_price, 50)
-
-print("Nearest Nifty Strike : ", nearest_strike_nf)
+    print("Time not between 9:20 - 9:30 am to notify levels...!")
 
 #Keep Running below code from 9AM to 3PM
 if intTime >= 9 and intTime < 12:
@@ -89,6 +71,22 @@ if intTime >= 9 and intTime < 12:
         if current_hour>12:
             print(f"Exiting the script at {runTime}, as it's past 12 PM.")
             break;
+        data = yf.download("^NSEI", period="1mo", interval="5m")
+        def get_live_price(data):
+         """Fetch the current live price of an index from the last row of data."""
+         return float(data['Close'].iloc[-1])
+
+        live_price = round(get_live_price(data),2)
+
+        print("live nifty price : ", live_price)
+
+        def get_nearest_strike_price(live_price, step):
+            """Calculate the nearest strike price for a given index price."""
+            return round(live_price / step) * step
+
+        nearest_strike_nf = get_nearest_strike_price(live_price, 50)
+
+        print("Nearest Nifty Strike : ", nearest_strike_nf)
         print("Running task at:", runTime)
         print("Nifty CE RISKY Levels : ",nse_ce_risky_levels)
         print("Nifty CE SAFE Levels : ",nse_ce_safe_levels)
@@ -112,7 +110,7 @@ if intTime >= 9 and intTime < 12:
         nifty_pe_safe_plus_range = int(nse_pe_safe_levels + 10)
         print("nifty_pe_safe_plus_range : ", nifty_pe_safe_plus_range)
 
-    
+
         #nf_risky_level_range = range(nse_pe_levels, nse_ce_levels)
         nf_ce_risky_minus_plus_range = range(nifty_ce_risky_minus_range, nifty_ce_risky_plus_range)
         nf_ce_safe_minus_plus_range = range(nifty_ce_safe_minus_range, nifty_ce_safe_plus_range)
@@ -125,11 +123,11 @@ if intTime >= 9 and intTime < 12:
         counter= counter+1
         print("Counter : ", counter)
 
-       # niftyCELog = dt[0]+'-'+runTime+'\t'+'NIFYT CMP : '+str(niftyLastPrice)+'\t'+'NIFTY TRADING NEAR CE BO LEVEL: '+str(nifty_ce_plus_range)+'\t'
-       # niftyPELog = dt[0]+'-'+runTime+'\t'+'NIFYT CMP : '+str(niftyLastPrice)+'\t'+'NIFTY TRADING NEAR PE BO LEVEL: '+str(nifty_pe_minus_range)+'\t'
+        # niftyCELog = dt[0]+'-'+runTime+'\t'+'NIFYT CMP : '+str(niftyLastPrice)+'\t'+'NIFTY TRADING NEAR CE BO LEVEL: '+str(nifty_ce_plus_range)+'\t'
+        # niftyPELog = dt[0]+'-'+runTime+'\t'+'NIFYT CMP : '+str(niftyLastPrice)+'\t'+'NIFTY TRADING NEAR PE BO LEVEL: '+str(nifty_pe_minus_range)+'\t'
 
         
-    
+
         if nifty_ce_risky_minus_range <= niftyLastPrice <= nifty_ce_risky_plus_range :
             buy = 'RISKY PE'
             t_url = f"https://api.telegram.org/{my_token}/sendMessage?chat_id={chat_id}&text="+"======================\n"+dt[0]+"-"+runTime+"\n======================\n"+"PYTHON-BOT FOR TODAY's NIFTY 4 Magical LEVELS\n"+"======================\n"+"NIFYT CMP : "+str(niftyLastPrice)+"\n======================\n"+"NIFTY TRADING NEAR RISKY PE BO LEVEL: "+str(nifty_ce_risky_plus_range)+"\n"+"=========================\n"+"CHOOSE STRIKE : "+str(nearest_strike_nf)+" "+buy+"\n=========================\n"+"NOTE : ONLY FOR EDUCATIONAL PURPOSE.\n"+"---------------------------------\n"+"I AM NOT SEBI REG..!"+"\n----------------------------------"+"\nTRADE AT YOUR OWN RISK..!"
@@ -149,6 +147,6 @@ if intTime >= 9 and intTime < 12:
             buy = "SAFE CE"
             t_url = f"https://api.telegram.org/{my_token}/sendMessage?chat_id={chat_id}&text="+"======================\n"+dt[0]+"-"+runTime+"\n======================\n"+"PYTHON-BOT FOR TODAY's NIFTY LEVELS\n"+"======================\n"+"NIFYT CMP : "+str(niftyLastPrice)+"\n======================\n"+"NIFTY TRADING NEAR SAFE CE BO LEVEL: "+str(nifty_pe_safe_minus_range)+"\n"+"=========================\n"+"CHOOSE STRIKE : "+str(nearest_strike_nf)+" "+buy+"\n=========================\n"+"NOTE : ONLY FOR EDUCATIONAL PURPOSE.\n"+"-----------------------------------\n"+"I AM NOT SEBI REG..!"+"\n---------------------------------"+"\nTRADE AT YOUR OWN RISK..!"
             requests.post(t_url)        
-   
+
 
         time.sleep(180)
